@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     private int entryYear, entryMonth, entryDay, entryHour, entryMin, entrySec;
     private int exitYear, exitMonth, exitDay, exitHour, exitMin, exitSec;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,13 +112,39 @@ public class MainActivity extends AppCompatActivity {
 
         memo_tv.setText("");
         fee_tv.setText("");
-        boolean isCount = true;
+        boolean isDiscounted = false;
         int totalFee = 0;
 
         Calendar entry = Calendar.getInstance();
         entry.set(entryYear, entryMonth, entryDay, entryHour, entryMin);
+
         Calendar exit = Calendar.getInstance();
         exit.set(exitYear, exitMonth, exitDay, exitHour, exitMin);
+
+        Calendar startOfEntry = Calendar.getInstance();
+        startOfEntry.set(entryYear, entryMonth, entryDay, 20, 0);
+//        Calendar endOfEntry = Calendar.getInstance();
+//        endOfEntry.set(entryYear, entryMonth, entryDay, 23, 59);
+//        //endOfEntry.add(Calendar.DAY_OF_MONTH, 1);
+
+//        Calendar startOfExit = Calendar.getInstance();
+//        startOfExit.set(exitYear, exitMonth, exitDay, 0, 0);
+        Calendar endOfExit = Calendar.getInstance();
+        endOfExit.set(entryYear, entryMonth, entryDay, 8, 0);
+        endOfExit.add(Calendar.DAY_OF_MONTH, 1);
+
+        //endOfExit.add(Calendar.DAY_OF_MONTH, 1);
+        if(entry.get(Calendar.DAY_OF_MONTH) == exit.get(Calendar.DAY_OF_MONTH)){
+
+            if(exit.get(Calendar.HOUR_OF_DAY) < 20)
+               endOfExit.set(exitYear, exitMonth, exitDay, 8, 0);
+            if(exit.get(Calendar.HOUR_OF_DAY) > 20){
+
+                endOfExit.set(exitYear, exitMonth, exitDay, 8, 0);
+                endOfExit.add(Calendar.DAY_OF_MONTH, 1);
+            }
+
+        }
 
         if(exit.before(entry)) {
             new AlertDialog.Builder(MainActivity.this)
@@ -163,18 +188,141 @@ public class MainActivity extends AppCompatActivity {
             if(acuHr >= 1)
             {
 
-                times = acuHr * 2;
-                if(acuMin > 10 && acuMin <= 40) times = times + 1;
-                if(acuMin > 40 && acuMin <= 59) times = times + 2;
+                /** 優惠時段頭 */
+                boolean entryLine = entry.equals(startOfEntry) || entry.after(startOfEntry);
+                /** 優惠時段尾 */
+                boolean exitLine = exit.equals(endOfExit) || exit.before(endOfExit);
+
+                if(entryLine && exitLine){
+
+                    Log.i("收費模式 => ","優惠（全）");
+
+                    long diffMill = exit.getTime().getTime() - entry.getTime().getTime();
+                    long diffMin = diffMill/1000/60;
+                    long diffHr = diffMill/1000/60/60;
+                    diffMin = diffMin - diffHr*60;
+
+                    if(diffHr >= 4) {
+                        times = times + 8;
+                        Log.i("停車時間（優惠時段） => ",diffHr+"（小時）/"+diffMin+" （分）優惠時段(20:00 ~ 8:00)滿4小時 NT120");
+
+                        memo_tv.setText("優惠時段(20:00 ~ 8:00)滿4小時 NT120");
+                    }else if(diffHr < 4){
+
+                        times = times + diffHr*2;
+                        Log.i("停車時間（優惠時段） => ",diffHr+"（小時）/"+diffMin+" （分）");
+
+                        if(diffMin > 10 && diffMin <= 40) times = times + 1;
+                        if(diffMin > 40 && diffMin <= 59) times = times + 2;
+                    }
+
+                }
+
+                else if(entry.before(startOfEntry) && exitLine){
+
+                    Log.i("收費模式 => ","優惠（前）");
+
+                    long diffMill = exit.getTime().getTime() - startOfEntry.getTime().getTime();
+                    long diffMin = diffMill/1000/60;
+                    long diffHr = diffMill/1000/60/60;
+                    diffMin = diffMin - diffHr*60;
+
+                    if(diffHr >= 4) {
+                        times = times + 8;
+                        Log.i("停車時間（優惠時段） => ",diffHr+"（小時）/"+diffMin+" （分）優惠時段(20:00 ~ 8:00)滿4小時 NT120");
+                        memo_tv.setText("優惠時段(20:00 ~ 8:00)滿4小時 NT120");
+                    }else if(diffHr < 4){
+                        times = times + diffHr*2;
+                        Log.i("停車時間（優惠時段） => ",diffHr+"（小時）/"+diffMin+" （分）");
+                        if(diffMin > 10 && diffMin <= 40) times = times + 1;
+                        if(diffMin > 40 && diffMin <= 59) times = times + 2;
+
+                    }
+
+                    diffMill = startOfEntry.getTime().getTime() - entry.getTime().getTime();
+                    diffMin = diffMill/1000/60;
+                    diffHr = diffMill/1000/60/60;
+                    diffMin = diffMin - diffHr*60;
+
+
+                    times = times + diffHr*2;
+                    if(diffMin > 10 && diffMin <= 40) times = times + 1;
+                    if(diffMin > 40 && diffMin <= 59) times = times + 2;
+                    Log.i("停車時間（普通時段） => ",diffHr+"（小時）/"+diffMin+" （分）");
+
+                }
+                else if(entryLine && exit.after(endOfExit)){
+
+                    Log.i("收費模式 => ","優惠（後）");
+
+                    long diffMill = endOfExit.getTime().getTime() - entry.getTime().getTime();
+                    long diffMin = diffMill/1000/60;
+                    long diffHr = diffMill/1000/60/60;
+                    diffMin = diffMin - diffHr*60;
+
+                    if(diffHr >= 4) {
+                        times = times + 8;
+                        memo_tv.setText("優惠時段(20:00 ~ 8:00)滿4小時 NT120");
+                        Log.i("停車時間（優惠時段） => ",diffHr+"（小時）/"+diffMin+" （分）優惠時段(20:00 ~ 8:00)滿4小時 NT120");
+
+                    }else if(diffHr < 4){
+                        times = times + diffHr*2;
+                        Log.i("停車時間（優惠時段） => ",diffHr+"（小時）/"+diffMin+" （分）");
+                        if(diffMin > 10 && diffMin <= 40) times = times + 1;
+                        if(diffMin > 40 && diffMin <= 59) times = times + 2;
+
+                    }
+
+                    diffMill = exit.getTime().getTime() - endOfExit.getTime().getTime();
+                    diffMin = diffMill/1000/60;
+                    diffHr = diffMill/1000/60/60;
+                    diffMin = diffMin - diffHr*60;
+
+
+                    times = times + diffHr*2;
+                    if(diffMin > 10 && diffMin <= 40) times = times + 1;
+                    if(diffMin > 40 && diffMin <= 59) times = times + 2;
+
+                    Log.i("停車時間（普通時段） => ",diffHr+"（小時）/"+diffMin+" （分）");
+
+
+                }
+                else{
+
+                    Log.i("收費模式 => ","正常");
+
+                    long diffMill = exit.getTime().getTime() - entry.getTime().getTime();
+                    long diffMin = diffMill/1000/60;
+                    long diffHr = diffMill/1000/60/60;
+                    diffMin = diffMin - diffHr*60;
+
+                    times = times + diffHr*2;
+                    if(diffMin > 10 && diffMin <= 40) times = times + 1;
+                    if(diffMin > 40 && diffMin <= 59) times = times + 2;
+
+                    Log.i("停車時間（普通時段） => ",diffHr+"（小時）/"+diffMin+" （分）");
+
+                }
+
+
+
+//                times = acuHr * 2;
+//                if(acuMin > 10 && acuMin <= 40) times = times + 1;
+//                if(acuMin > 40 && acuMin <= 59) times = times + 2;
 
             }
 
             for(int i=0;i<times;i++) totalFee += 15;
-            Log.i("charge => ",String.valueOf(totalFee));
+            Log.i("收費 => ",String.valueOf(totalFee));
             fee_tv.setText(String.valueOf(totalFee));
 
 
         }
+
+
+
+    }
+    public void checkDiscount(){
 
 
 

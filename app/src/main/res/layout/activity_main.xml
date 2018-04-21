@@ -10,9 +10,9 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="38dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_weight="1"
-        android:text="進場日期"
+        android:text="進場日期/時間"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/ent_date_btn"
@@ -22,12 +22,15 @@
 
     <TextView
         android:id="@+id/ent_date_txt"
-        android:layout_width="250dp"
+        style="@style/Base.Animation.AppCompat.DropDownUp"
+        android:layout_width="160dp"
         android:layout_height="30dp"
         android:layout_marginBottom="11dp"
-        android:layout_marginEnd="6dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginStart="68dp"
         android:layout_marginTop="11dp"
         android:layout_weight="1"
+        android:inputType="date"
         android:text="請選擇入場日期"
         android:textSize="22dp"
         app:layout_constraintBottom_toTopOf="@+id/ent_time_txt"
@@ -39,7 +42,6 @@
         android:id="@+id/ent_date_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
         android:text="選擇日期"
         app:layout_constraintBottom_toTopOf="@+id/ent_time_btn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,12 +50,14 @@
 
     <TextView
         android:id="@+id/ent_time_txt"
-        android:layout_width="250dp"
+        android:layout_width="160dp"
         android:layout_height="30dp"
         android:layout_marginBottom="21dp"
-        android:layout_marginEnd="6dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginStart="68dp"
         android:layout_marginTop="11dp"
         android:layout_weight="1"
+        android:inputType="time"
         android:text="請選擇入場時間"
         android:textSize="22dp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
@@ -66,7 +70,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:layout_marginStart="6dp"
         android:layout_marginTop="3dp"
         android:text="選擇時間"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
@@ -80,10 +83,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="329dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_weight="1"
-        android:text="出場日期"
+        android:text="出場日期/時間"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -94,25 +97,28 @@
 
     <TextView
         android:id="@+id/exit_date_txt"
-        android:layout_width="250dp"
+        android:layout_width="160dp"
         android:layout_height="30dp"
         android:layout_marginBottom="284dp"
-        android:layout_marginEnd="94dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="15dp"
         android:layout_weight="1"
+        android:inputType="date"
         android:text="請選擇出場日期"
         android:textSize="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/exit_date_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/exit_date_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="281dp"
-        android:layout_marginStart="9dp"
+        android:layout_marginStart="32dp"
         android:text="選擇日期"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -123,25 +129,28 @@
 
     <TextView
         android:id="@+id/exit_time_txt"
-        android:layout_width="250dp"
+        android:layout_width="160dp"
         android:layout_height="30dp"
         android:layout_marginBottom="231dp"
-        android:layout_marginEnd="94dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="23dp"
         android:layout_weight="1"
+        android:inputType="time"
         android:text="請選擇出場時間"
         android:textSize="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/exit_time_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exit_date_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/exit_date_txt"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/exit_time_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="223dp"
-        android:layout_marginStart="9dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="10dp"
         android:text="選擇時間"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -155,27 +164,25 @@
         android:id="@+id/textView8"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="7dp"
         android:layout_weight="1"
         android:text="停車時間"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/bill"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exit_time_btn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/parkingHr"
         android:layout_width="35dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:layout_weight="1"
         android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -183,14 +190,15 @@
         app:layout_constraintBottom_toTopOf="@+id/bill"
         app:layout_constraintEnd_toStartOf="@+id/Hr"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/exit_time_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/Hr"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="8dp"
         android:layout_weight="1"
         android:text="時"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -198,15 +206,15 @@
         app:layout_constraintBottom_toTopOf="@+id/bill"
         app:layout_constraintEnd_toStartOf="@+id/parkingMin"
         app:layout_constraintStart_toEndOf="@+id/parkingHr"
-        app:layout_constraintTop_toBottomOf="@+id/exit_time_txt"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/parkingMin"
         android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -214,14 +222,14 @@
         app:layout_constraintBottom_toTopOf="@+id/fee_txt"
         app:layout_constraintEnd_toStartOf="@+id/Min"
         app:layout_constraintStart_toEndOf="@+id/Hr"
-        app:layout_constraintTop_toBottomOf="@+id/exit_time_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/Min"
         android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:layout_marginTop="7dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="6dp"
         android:layout_weight="1"
         android:text="分"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -229,33 +237,28 @@
         app:layout_constraintBottom_toTopOf="@+id/fee_txt"
         app:layout_constraintEnd_toStartOf="@+id/parkingSec"
         app:layout_constraintStart_toEndOf="@+id/parkingMin"
-        app:layout_constraintTop_toBottomOf="@+id/exit_time_btn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/parkingSec"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="133dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginBottom="11dp"
         android:layout_weight="1"
         android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/billing_btn"
+        app:layout_constraintBottom_toTopOf="@+id/fee_txt"
         app:layout_constraintEnd_toStartOf="@+id/Sec"
         app:layout_constraintStart_toEndOf="@+id/Min"
-        app:layout_constraintTop_toBottomOf="@+id/exit_time_btn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/Sec"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="2dp"
         android:layout_weight="1"
         android:text="秒"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -263,28 +266,29 @@
         app:layout_constraintBottom_toTopOf="@+id/fee_txt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/parkingSec"
-        app:layout_constraintTop_toBottomOf="@+id/exit_time_btn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/bill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="14dp"
         android:layout_weight="1"
         android:text="應繳金額"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/colorAccent"
         android:textSize="45dp"
+        app:layout_constraintBottom_toTopOf="@+id/memo_txt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/parkingMin" />
 
     <TextView
         android:id="@+id/fee_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="31dp"
         android:layout_marginEnd="74dp"
         android:layout_marginStart="26dp"
         android:layout_weight="1"
@@ -292,7 +296,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/holo_purple"
         android:textSize="38dp"
-        app:layout_constraintBottom_toTopOf="@+id/billing_btn"
+        app:layout_constraintBottom_toTopOf="@+id/memo_txt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintStart_toEndOf="@+id/bill" />
@@ -303,12 +307,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:text="系統設定"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/billing_btn"
-        android:layout_width="180dp"
+        android:layout_width="match_parent"
         android:layout_height="51dp"
         android:layout_marginBottom="1dp"
         android:text="進行計費"
@@ -319,7 +324,7 @@
         android:id="@+id/memo_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="38dp"
         android:layout_marginTop="10dp"
         android:text=""
         android:textColor="@android:color/holo_red_dark"
@@ -328,6 +333,83 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bill" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:layout_marginStart="8dp"
+        android:text="----------------------------------------------------------------------------------"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ent_time_txt" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginStart="8dp"
+        android:text="----------------------------------------------------------------------------------"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exit_time_txt" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/ent_time_txt"
+        app:layout_constraintEnd_toStartOf="@+id/ent_date_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/if_calendar_298737" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toStartOf="@+id/ent_time_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/if_10_171505" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toStartOf="@+id/exit_date_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/if_calendar_298737" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toStartOf="@+id/exit_time_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:srcCompat="@drawable/if_10_171505" />
 
 
 </android.support.constraint.ConstraintLayout>
